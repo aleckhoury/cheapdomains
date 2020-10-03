@@ -1,7 +1,30 @@
 <template>
-  <v-app>
+  <v-app class="app">
     <v-card color="grey lighten-4" flat tile>
-      <v-toolbar>
+      <v-toolbar v-if="$vuetify.breakpoint.xsOnly">
+        <logo />
+
+        <v-toolbar-title id="title" class="pl-3">Cheap Domains</v-toolbar-title>
+
+        <v-spacer></v-spacer>
+        <v-menu transition="slide-x-transition" bottom left>
+          <template v-slot:activator="{ on }">
+            <v-btn dark icon v-on="on">
+              <v-icon>fa fa-ellipsis-v</v-icon>
+            </v-btn>
+          </template>
+
+          <v-list>
+            <v-list-item>
+              <v-list-item-title>About</v-list-item-title>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title>Blog</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-toolbar>
+      <v-toolbar v-else>
         <logo />
 
         <v-toolbar-title id="title" class="pl-3">Cheap Domains</v-toolbar-title>
@@ -54,6 +77,9 @@ export default {
 }
 </script>
 <style scoped>
+.app {
+  background-color: #383a47;
+}
 #title {
   font-family: 'Permanent Marker';
   font-size: 2em;

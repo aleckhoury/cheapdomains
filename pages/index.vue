@@ -18,19 +18,19 @@
       </div>
     </div>
     <div class="infoBlock">
-      <div class="imageOne"></div>
       <div class="copy">
-        <p class="pa-3">
+        <p class="ma-5">
           We get prices from top domain providers, and we send you to the best
           deal.
         </p>
       </div>
+      <div class="imageOne"></div>
     </div>
     <div class="infoBlock">
-      <div class="copy">
-        <p class="pa-3">That's it. It's as simple as that.</p>
-      </div>
       <div class="imageTwo"></div>
+      <div class="copy">
+        <p class="ma-5">It's just that simple.</p>
+      </div>
     </div>
   </div>
 </template>
@@ -71,19 +71,42 @@ export default {
   height: 25em;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
+  min-height: 20em;
 }
 .imageOne {
   background-image: url('../assets/abstract-sign-in.png');
-  background-size: contain;
+  background-size: cover;
+  background-color: #e6c0d2;
 }
 .copy {
   font-size: 2em;
   font-weight: 500;
   justify-self: center;
   align-self: center;
+  text-align-last: center;
 }
 .imageTwo {
   background-image: url('../assets/good-job.png');
-  background-size: contain;
+  background-size: cover;
+  background-color: #94d4c3;
+}
+@media screen and (max-width: 768px) {
+  .infoBlock {
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+  }
+  .copy {
+    order: 1;
+  }
+  .imageOne,
+  .imageTwo {
+    order: 2;
+    min-height: 15em;
+    max-height: 20em;
+    background-size: cover;
+  }
+  .search {
+    width: 90%;
+  }
 }
 </style>
