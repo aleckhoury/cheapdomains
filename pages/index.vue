@@ -1,10 +1,9 @@
 <template>
   <div class="full-width">
-    <div class="grid">
+    <div class="header">
       <div class="cta">
         <h2>
-          Search once. We'll find you the cheapest domain provider. Simple as
-          that.
+          Search your domain once. We'll find the cheapest price. That's it.
         </h2>
       </div>
       <div class="search">
@@ -49,7 +48,7 @@ export default {
 .full-width {
   width: 100%;
 }
-.grid {
+.header {
   display: grid;
   width: 100%;
   height: 20em;
@@ -68,10 +67,9 @@ export default {
 .infoBlock {
   display: grid;
   width: 100%;
-  height: 25em;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
-  min-height: 20em;
+  min-height: 25em;
 }
 .imageOne {
   background-image: url('../assets/abstract-sign-in.png');
@@ -101,9 +99,8 @@ export default {
   .imageOne,
   .imageTwo {
     order: 2;
-    min-height: 15em;
-    max-height: 20em;
-    background-size: cover;
+    height: 15em;
+    background-size: contain;
   }
   .search {
     width: 90%;
