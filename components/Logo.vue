@@ -6,9 +6,14 @@
 
 <style scoped>
 .VueToNuxtLogo {
-  height: 2em;
+  display: flex;
 }
 img {
-  height: 100%;
+  height: 2.5em;
+}
+@media screen and (max-width: 768px) {
+  img {
+    height: 1.8em;
+  }
 }
 </style>

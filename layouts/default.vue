@@ -2,9 +2,12 @@
   <v-app class="app">
     <v-card color="grey lighten-4" flat tile>
       <v-toolbar v-if="$vuetify.breakpoint.xsOnly">
-        <logo />
-
-        <v-toolbar-title id="title" class="pl-3">Cheap Domains</v-toolbar-title>
+        <nuxt-link to="/" class="home">
+          <v-toolbar-title id="title">
+            <logo />
+            <span class="pl-2 pt-1">Cheap Domains</span>
+          </v-toolbar-title>
+        </nuxt-link>
 
         <v-spacer></v-spacer>
         <v-menu transition="slide-x-transition" bottom left>
@@ -15,23 +18,31 @@
           </template>
 
           <v-list>
-            <v-list-item>
+            <v-list-item to="/about" nuxt>
               <v-list-item-title>About</v-list-item-title>
             </v-list-item>
-            <v-list-item>
+            <v-list-item to="/blog" nuxt>
               <v-list-item-title>Blog</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>
       </v-toolbar>
       <v-toolbar v-else>
-        <logo />
+        <nuxt-link to="/" class="home">
+          <logo />
 
-        <v-toolbar-title id="title" class="pl-3">Cheap Domains</v-toolbar-title>
+          <v-toolbar-title id="title" class="pl-3">
+            Cheap Domains
+          </v-toolbar-title>
+        </nuxt-link>
 
         <v-spacer></v-spacer>
-        <v-toolbar-items><v-btn depressed>About</v-btn></v-toolbar-items>
-        <v-toolbar-items><v-btn depressed>Blog</v-btn></v-toolbar-items>
+        <v-toolbar-items
+          ><v-btn depressed to="/about" nuxt>About</v-btn></v-toolbar-items
+        >
+        <v-toolbar-items
+          ><v-btn depressed to="/blog" nuxt>Blog</v-btn></v-toolbar-items
+        >
       </v-toolbar>
     </v-card>
     <v-layout>
@@ -83,8 +94,20 @@ export default {
 #title {
   font-family: 'Permanent Marker';
   font-size: 2em;
+  color: white;
+  display: flex;
+  vertical-align: middle;
 }
 .v-btn {
   font-family: 'Helvetica';
+}
+.home {
+  text-decoration: none;
+  display: contents;
+}
+@media screen and (max-width: 768px) {
+  #title {
+    font-size: 1.5em;
+  }
 }
 </style>
