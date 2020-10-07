@@ -73,7 +73,7 @@ export default {
 }
 .imageOne {
   background-image: url('../assets/abstract-sign-in.png');
-  background-size: cover;
+  background-size: contain;
   background-color: #e6c0d2;
 }
 .copy {
@@ -85,7 +85,7 @@ export default {
 }
 .imageTwo {
   background-image: url('../assets/good-job.png');
-  background-size: cover;
+  background-size: contain;
   background-color: #94d4c3;
 }
 @media screen and (max-width: 768px) {
