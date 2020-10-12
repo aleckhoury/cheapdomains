@@ -4,14 +4,18 @@ export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: '%s - cheapdomains',
-    title: 'cheapdomains',
+    title: 'Cheap Domains',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon.ico',
+      },
       {
         rel: 'stylesheet',
         href: 'https://use.fontawesome.com/releases/v5.0.13/css/all.css',
@@ -27,7 +31,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: [{ src: '~/plugins/vue-gtag' }],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -55,10 +59,25 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
+    '@nuxtjs/gtm',
   ],
 
+  gtm: {
+    id: 'GTM-K46P3M8', // Used as fallback if no runtime config is provided
+  },
+
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+  },
+
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    headers: {
+      common: {
+        Accept: 'application/json, text/plain, */*, Content-Type',
+      },
+    },
+  },
 
   // Content module configuration (https://go.nuxtjs.dev/content-config)
   content: {},
@@ -75,7 +94,7 @@ export default {
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
           warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
+          error: '#8B0000',
           success: colors.green.accent3,
         },
       },

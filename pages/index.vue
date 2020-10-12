@@ -13,7 +13,58 @@
           prepend-inner-icon="fa fa-search"
           solo
           clearable
-        ></v-text-field>
+          @keydown.enter="search ? searchPrice() : ''"
+        >
+          <template v-if="!$vuetify.breakpoint.xsOnly" slot="append">
+            <VBtn
+              light
+              :dark="!search"
+              color="rgb(174, 198, 247)"
+              :disabled="!search"
+              @click="searchPrice()"
+              >Search</VBtn
+            >
+          </template>
+        </v-text-field>
+        <VBtn
+          v-if="$vuetify.breakpoint.xsOnly"
+          light
+          :dark="!search"
+          color="rgb(174, 198, 247)"
+          :disabled="!search"
+          @click="searchPrice()"
+          >Search</VBtn
+        >
+        <v-overlay :value="loading">
+          <div class="progress-box pa-5">
+            <v-progress-circular indeterminate size="64"></v-progress-circular>
+            <div>
+              <h2 class="pa-4">
+                Please allow up to 30 seconds for us to find the cheapest price!
+              </h2>
+            </div>
+          </div>
+        </v-overlay>
+        <VDialog
+          v-model="open"
+          :width="$vuetify.breakpoint.xsOnly ? '100%' : '50%'"
+        >
+          <VCard class="text-center">
+            <h1 class="pa-2">🎉🎉🎉🎉</h1>
+            <h1 class="pa-2">
+              We found the best price on {{ best.registrar }}!
+            </h1>
+            <h1 class="pa-2">${{ best.price.toFixed(2) }}</h1>
+            <VBtn
+              color="#f08080"
+              light
+              class="ma-2"
+              :href="best.url"
+              target="_blank"
+              >Get Domain</VBtn
+            >
+          </VCard>
+        </VDialog>
       </div>
     </div>
     <div class="infoBlock">
@@ -40,7 +91,34 @@ export default {
   data() {
     return {
       search: '',
+      best: {
+        price: 0,
+        url: '',
+        registrar: '',
+      },
+      loading: false,
+      open: false,
+      rules: {},
     }
+  },
+  methods: {
+    async searchPrice() {
+      this.loading = true
+
+      this.best = await this.$axios.$get(
+        'https://us-central1-cheapest-domains.cloudfunctions.net/get-cheapest-domains',
+        {
+          params: {
+            url: this.search,
+          },
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      this.open = true
+      this.loading = false
+    },
   },
 }
 </script>
@@ -88,6 +166,10 @@ export default {
   background-size: cover;
   background-color: #94d4c3;
 }
+.progress-box {
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 20px;
+}
 @media screen and (max-width: 768px) {
   .infoBlock {
     grid-template-columns: auto;
@@ -104,6 +186,9 @@ export default {
   }
   .search {
     width: 90%;
+  }
+  .progress-box {
+    width: 100%;
   }
 }
 </style>

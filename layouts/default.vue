@@ -13,7 +13,7 @@
         <v-menu transition="slide-x-transition" bottom left>
           <template v-slot:activator="{ on }">
             <v-btn dark icon v-on="on">
-              <v-icon>fa fa-feather</v-icon>
+              <v-icon>fa fa-ellipsis-v</v-icon>
             </v-btn>
           </template>
 
