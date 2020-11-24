@@ -13,6 +13,8 @@
           prepend-inner-icon="fa fa-search"
           solo
           clearable
+          persistent-hint
+          hint="Type the exact domain you'd like to search, or you may get worse results. i.e. 'example.com'"
           @keydown.enter="search ? searchPrice() : ''"
         >
           <template v-if="!$vuetify.breakpoint.xsOnly" slot="append">
@@ -39,9 +41,7 @@
           <div class="progress-box pa-5">
             <v-progress-circular indeterminate size="64"></v-progress-circular>
             <div>
-              <h2 class="pa-4">
-                Please allow up to 30 seconds for us to find the cheapest price!
-              </h2>
+              <h2 class="pa-4">Finding you the best price...</h2>
             </div>
           </div>
         </v-overlay>
@@ -49,7 +49,13 @@
           v-model="open"
           :width="$vuetify.breakpoint.xsOnly ? '100%' : '50%'"
         >
-          <VCard class="text-center">
+          <VCard v-if="best === 'Taken'" class="text-center">
+            <h1 class="pa-2">🚫🚫🚫🚫</h1>
+            <h1 class="pa-2">
+              That domain is taken. You'll have to search again!
+            </h1>
+          </VCard>
+          <VCard v-else class="text-center">
             <h1 class="pa-2">🎉🎉🎉🎉</h1>
             <h1 class="pa-2">
               We found the best price on {{ best.registrar }}!
@@ -105,17 +111,14 @@ export default {
     async searchPrice() {
       this.loading = true
 
-      this.best = await this.$axios.$get(
-        'https://us-central1-cheapest-domains.cloudfunctions.net/get-cheapest-domains',
-        {
-          params: {
-            url: this.search,
-          },
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      )
+      this.best = await this.$axios.$get('http://localhost:8080', {
+        params: {
+          name: this.search,
+        },
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
       this.open = true
       this.loading = false
     },
