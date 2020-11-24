@@ -9,7 +9,7 @@
           </v-toolbar-title>
         </nuxt-link>
 
-        <v-spacer></v-spacer>
+        <!-- <v-spacer></v-spacer>
         <v-menu transition="slide-x-transition" bottom left>
           <template v-slot:activator="{ on }">
             <v-btn dark icon v-on="on">
@@ -17,15 +17,15 @@
             </v-btn>
           </template>
 
-          <!-- <v-list>
+          <v-list>
             <v-list-item to="/about" nuxt>
               <v-list-item-title>About</v-list-item-title>
             </v-list-item>
             <v-list-item to="/blog" nuxt>
               <v-list-item-title>Blog</v-list-item-title>
             </v-list-item>
-          </v-list> -->
-        </v-menu>
+          </v-list>
+        </v-menu> -->
       </v-toolbar>
       <v-toolbar v-else>
         <nuxt-link to="/" class="home">
@@ -36,13 +36,13 @@
           </v-toolbar-title>
         </nuxt-link>
 
-        <v-spacer></v-spacer>
+        <!-- <v-spacer></v-spacer>
         <v-toolbar-items
           ><v-btn depressed to="/about" nuxt>About</v-btn></v-toolbar-items
         >
         <v-toolbar-items
           ><v-btn depressed to="/blog" nuxt>Blog</v-btn></v-toolbar-items
-        >
+        > -->
       </v-toolbar>
     </v-card>
     <v-layout>
