@@ -41,7 +41,9 @@
           <div class="progress-box pa-5">
             <v-progress-circular indeterminate size="64"></v-progress-circular>
             <div>
-              <h2 class="pa-4">Finding you the best price...</h2>
+              <h2 class="pa-4">
+                Please allow 10-15 seconds to find the best price...
+              </h2>
             </div>
           </div>
         </v-overlay>
