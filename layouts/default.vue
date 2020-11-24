@@ -17,14 +17,14 @@
             </v-btn>
           </template>
 
-          <v-list>
+          <!-- <v-list>
             <v-list-item to="/about" nuxt>
               <v-list-item-title>About</v-list-item-title>
             </v-list-item>
             <v-list-item to="/blog" nuxt>
               <v-list-item-title>Blog</v-list-item-title>
             </v-list-item>
-          </v-list>
+          </v-list> -->
         </v-menu>
       </v-toolbar>
       <v-toolbar v-else>
