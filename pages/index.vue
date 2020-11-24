@@ -111,14 +111,17 @@ export default {
     async searchPrice() {
       this.loading = true
 
-      this.best = await this.$axios.$get('http://localhost:8080', {
-        params: {
-          name: this.search,
-        },
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+      this.best = await this.$axios.$get(
+        'https://us-central1-cheapest-domains.cloudfunctions.net/hello_http',
+        {
+          params: {
+            name: this.search,
+          },
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
       this.open = true
       this.loading = false
     },
